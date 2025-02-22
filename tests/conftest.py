@@ -13,7 +13,7 @@ def product():
 
 
 @pytest.fixture
-def category_1():
+def category1():
     return Category(
         name="Смартфоны",
         description="Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
@@ -31,7 +31,7 @@ def category_1():
 
 
 @pytest.fixture
-def category_2():
+def category2():
     return Category(
         name="Телевизоры",
         description="Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником",
@@ -42,7 +42,7 @@ def category_2():
 
 
 @pytest.fixture
-def category_3():
+def category3():
     return Category(
         name="Ноутбуки",
         description="Ноутбуки, как средство не только коммуникации, но и получения дополнительных функций для "
