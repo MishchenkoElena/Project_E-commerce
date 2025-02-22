@@ -5,15 +5,15 @@ def test_product_init(product):
     assert product.quantity == 5
 
 
-def test_category_init(category_1, category_2, category_3):
-    assert category_1.name == "Смартфоны"
+def test_category_init(category1, category2, category3):
+    assert category1.name == "Смартфоны"
     assert (
-        category_2.description
+        category2.description
         == "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником"
     )
-    assert len(category_1.products) == 3
+    assert len(category1.products) == 3
 
-    assert category_1.category_count == 3
-    assert category_2.category_count == 3
-    assert category_3.category_count == 3
-    assert len(category_3.products) == 0
+    assert category1.category_count == 3
+    assert category2.category_count == 3
+    assert category3.category_count == 3
+    assert len(category3.products) == 0
