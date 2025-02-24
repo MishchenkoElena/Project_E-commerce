@@ -16,7 +16,6 @@ def test_category_init(category1, category2, category3):
         == "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником"
     )
     assert len(category1.products_in_list) == 3
-
     assert category1.category_count == 3
     assert category2.category_count == 3
     assert category3.category_count == 3
@@ -37,7 +36,7 @@ def test_add_new_product():
     assert product.price == 250000.0
     assert product.quantity == 10
 
-
+    
 def test_product_price_incorrect(capsys, product: Product):
     product.price = -500
     captured = capsys.readouterr()
@@ -57,3 +56,5 @@ def test_product_price_setter_yes(capsys, product: Product):
         captured = capsys.readouterr()
         assert captured.out == ""
         assert product.price == 100000.0
+=======
+  
