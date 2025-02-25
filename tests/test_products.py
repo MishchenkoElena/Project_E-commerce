@@ -1,4 +1,5 @@
 from unittest.mock import patch
+
 from src.products import Product
 
 
@@ -36,7 +37,7 @@ def test_add_new_product():
     assert product.price == 250000.0
     assert product.quantity == 10
 
-    
+
 def test_product_price_incorrect(capsys, product: Product):
     product.price = -500
     captured = capsys.readouterr()

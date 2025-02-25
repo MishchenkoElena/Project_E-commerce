@@ -39,8 +39,7 @@ class Product:
             return
         elif new_price < self.__price:
             user_choice = input("Вы действительно хотите снизить цену товара? (y/n)\n").strip().lower()
-            if user_choice == "y":
-                self.__price = new_price
+            if user_choice != "y":
                 return
         self.__price = new_price
 
