@@ -56,5 +56,3 @@ def test_product_price_setter_yes(capsys, product: Product):
         captured = capsys.readouterr()
         assert captured.out == ""
         assert product.price == 100000.0
-=======
-  
