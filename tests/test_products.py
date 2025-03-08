@@ -66,7 +66,7 @@ def test_product_str(product1):
 
 
 def test_category_str(category1):
-    assert str(category1) == "Смартфоны, количество продуктов: 3 шт."
+    assert str(category1) == "Смартфоны, количество продуктов: 27 шт."
 
 
 def test_product_add(product1, product2):
