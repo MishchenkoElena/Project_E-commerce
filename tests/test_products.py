@@ -1,13 +1,15 @@
 from unittest.mock import patch
 
+import pytest
+
 from src.products import Product
 
 
-def test_product_init(product: Product):
-    assert product.name == "Samsung Galaxy S23 Ultra"
-    assert product.description == "256GB, Серый цвет, 200MP камера"
-    assert product.price == 180000.0
-    assert product.quantity == 5
+def test_product_init(product1: Product):
+    assert product1.name == "Samsung Galaxy S23 Ultra"
+    assert product1.description == "256GB, Серый цвет, 200MP камера"
+    assert product1.price == 180000.0
+    assert product1.quantity == 5
 
 
 def test_category_init(category1, category2, category3):
@@ -38,22 +40,56 @@ def test_add_new_product():
     assert product.quantity == 10
 
 
-def test_product_price_incorrect(capsys, product: Product):
-    product.price = -500
+def test_product_price_incorrect(capsys, product1: Product):
+    product1.price = -500
     captured = capsys.readouterr()
     with patch("builtins.print"):
         assert captured.out == "Цена не должна быть нулевая или отрицательная\n"
-        assert product.price
-    product.price = 0
+        assert product1.price
+    product1.price = 0
     with patch("builtins.print"):
         assert captured.out == "Цена не должна быть нулевая или отрицательная\n"
-        assert product.price
+        assert product1.price
 
 
-def test_product_price_setter_yes(capsys, product: Product):
+def test_product_price_setter_yes(capsys, product1: Product):
     new_price = 100000.0
     with patch("builtins.input", side_effect=["y"]):
-        product.price = new_price
+        product1.price = new_price
         captured = capsys.readouterr()
         assert captured.out == ""
-        assert product.price == 100000.0
+        assert product1.price == 100000.0
+
+
+def test_product_str(product1):
+    assert str(product1) == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт."
+
+
+def test_category_str(category1):
+    assert str(category1) == "Смартфоны, количество продуктов: 3 шт."
+
+
+def test_product_add(product1, product2):
+    assert product1 + product2 == 2580000.0
+
+
+def test_product_add_incorrect_type(product1):
+    with pytest.raises(TypeError):
+        product1 + "Строка"
+
+    with pytest.raises(TypeError):
+        product1 + 42
+
+    with pytest.raises(TypeError):
+        product1 + None
+
+
+def test_product_iterator(product_iterator):
+    iter(product_iterator)
+    assert product_iterator.index == 0
+    assert next(product_iterator).name == "Samsung Galaxy S23 Ultra"
+    assert next(product_iterator).name == "Xiaomi Redmi Note 11"
+    assert next(product_iterator).name == "Iphone 15"
+
+    with pytest.raises(StopIteration):
+        next(product_iterator)

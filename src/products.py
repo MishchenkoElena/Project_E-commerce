@@ -12,6 +12,14 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
+    def __str__(self):
+        return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other):
+        if type(other) is Product:
+            return self.__price * self.quantity + other.price * other.quantity
+        raise TypeError
+
     @classmethod
     def new_product(cls, new_product_data, products_list):
         """Метод, который принимает на вход параметры товара в словаре и возвращает созданный объект класса Product"""
@@ -60,7 +68,9 @@ class Category:
         self.__products = products if products else []
         Category.category_count += 1
         Category.product_count += len(products) if products else 0
-        Category.products_list.extend(products)
+
+    def __str__(self):
+        return f"{self.name}, количество продуктов: {len(self.__products)} шт."
 
     def add_product(self, product: Product):
         """Метод для добавления товаров в категорию"""
@@ -73,7 +83,7 @@ class Category:
         """Геттер, который выводит список товаров в виде строк"""
         products_str = ""
         for product in self.__products:
-            products_str += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
+            products_str += f"{str(product)}\n"
         return products_str
 
     @property
